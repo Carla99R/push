@@ -3,7 +3,7 @@ VERSION=latest
 LOCAL_PORT=9000
 
 docker.build:
-	docker build -t carlar/v1:$(VERSION) .
+	docker build -t push:$(VERSION) .
 
 docker.run:
 	docker run --name api_test -d \
