@@ -10,7 +10,7 @@ RUN go fmt $(go list ./... | grep -v /vendor/) &&\
     GOOS=linux go build -a -o bin/app *.go
 
 FROM debian:buster-slim
-WORKDIR /api/
+WORKDIR /push/
 COPY --from=builder ["/src/bin/app", "/src/.env*", "/src/docs", "/v1"]
 
 EXPOSE 80
