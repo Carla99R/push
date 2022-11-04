@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DATA>
+
+    <ROW>
+        <res_codigo>00</res_codigo>
+        <res_descripcion_es>Aprobado</res_descripcion_es>
+    </ROW>
+    <ROW>
+        <res_codigo>01</res_codigo>
+        <res_descripcion_es>Error cargando archivo .env</res_descripcion_es>
+    </ROW>
+    <ROW>
+        <res_codigo>02</res_codigo>
+        <res_descripcion_es>No se pudo obtener la data</res_descripcion_es>
+    </ROW>
+    <ROW>
+        <res_codigo>03</res_codigo>
+        <res_descripcion_es>Petición con estructura incorrecta</res_descripcion_es>
+    </ROW>
+    <ROW>
+        <res_codigo>04</res_codigo>
+        <res_descripcion_es>Error cargando .p8</res_descripcion_es>
+    </ROW>
+</DATA>

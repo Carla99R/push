@@ -1,0 +1,6 @@
+scrape_configs:
+  - job_name: monitoring-api
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+      - -  api_test:80
