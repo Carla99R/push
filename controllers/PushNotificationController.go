@@ -19,9 +19,9 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"pushMessage/model"
-	"pushMessage/repository"
-	"pushMessage/utils"
+	"push/model"
+	"push/repository"
+	"push/utils"
 	"strings"
 	"time"
 )
