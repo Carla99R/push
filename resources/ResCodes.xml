@@ -21,4 +21,12 @@
         <res_codigo>04</res_codigo>
         <res_descripcion_es>Error cargando .p8</res_descripcion_es>
     </ROW>
+    <ROW>
+        <res_codigo>05</res_codigo>
+        <res_descripcion_es>Métricas con estructura incorrecta</res_descripcion_es>
+    </ROW>
+    <ROW>
+        <res_codigo>06</res_codigo>
+        <res_descripcion_es>Error en métricas</res_descripcion_es>
+    </ROW>
 </DATA>

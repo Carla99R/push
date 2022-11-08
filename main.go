@@ -11,7 +11,6 @@ import (
 )
 
 var (
-	fileOnDisk     = prometheus.NewRegistry()
 	processedTotal = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Name: "app_processed_total",
 		Help: "Number of times ran",
@@ -42,9 +41,7 @@ func RecordRequestLatency(c iris.Context) {
 	).Observe(elapsed)
 
 	Counter.Inc()
-	//totalRequests.WithLabelValues("/push_notification").Inc()
 	controllers.CreatePushNotificationHandler(c)
-
 }
 
 func doInit() {
@@ -69,22 +66,23 @@ func main() {
 	{
 		pushNotification := v1.Party("/push_notification")
 		{
-			//m := prometheusMiddleware.New("push_notification", 0.3, 1.2, 5.0)
 			doInit()
-			//pushNotification.Use(m.ServeHTTP)
-			//pushNotification.Post("/send", pushNotificationHandler)
 			pushNotification.Post("/send", RecordRequestLatency)
-			pushNotification.Get("/metrics", iris.FromStd(promhttp.Handler()))
-			//pushNotification.Get("/metrics", iris.FromStd(promhttp.InstrumentMetricHandler(fileOnDisk, promhttp.Handler())))
+			pushNotification.Get("/metrics", iris.FromStd(promhttp.HandlerFor(
+				prometheus.DefaultGatherer,
+				promhttp.HandlerOpts{
+					EnableOpenMetrics: true,
+				},
+			)))
+		}
+		metrics := v1.Party("/metrics")
+		{
+			metrics.Get("/get", controllers.GetMetricsHandler)
 		}
 	}
-	app.Listen(":8080")
-}
 
-func pushNotificationHandler(ctx iris.Context) {
-	Counter.Inc()
-	//totalRequests.WithLabelValues("/push_notification").Inc()
-	controllers.CreatePushNotificationHandler(ctx)
+	app.Listen(":8080")
+
 }
 
 var Counter = prometheus.NewCounter(
